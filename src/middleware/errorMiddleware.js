@@ -1,3 +1,11 @@
+/**
+ * Global Express error handling middleware.
+ * Formats and sends a JSON error response, handling Mongoose-specific errors.
+ * @param {Error} err - The error object
+ * @param {import('express').Request} req - Express request object
+ * @param {import('express').Response} res - Express response object
+ * @param {import('express').NextFunction} next - Express next middleware function
+ */
 const errorHandler = (err, req, res, next) => {
   console.error(err.stack);
 
@@ -23,6 +31,13 @@ const errorHandler = (err, req, res, next) => {
   });
 };
 
+/**
+ * Middleware to handle 404 Not Found routes.
+ * Creates an error and passes it to the next error handler.
+ * @param {import('express').Request} req - Express request object
+ * @param {import('express').Response} res - Express response object
+ * @param {import('express').NextFunction} next - Express next middleware function
+ */
 const notFound = (req, res, next) => {
   const error = new Error(`Not Found - ${req.originalUrl}`);
   res.status(404);

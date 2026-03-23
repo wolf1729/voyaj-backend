@@ -28,6 +28,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
+/**
+ * @desc    Health check / welcome route
+ * @route   GET /
+ * @access  Public
+ * @param {import('express').Request} req - Express request object
+ * @param {import('express').Response} res - Express response object
+ */
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to Voyaj Auth API' });
 });
@@ -46,6 +53,12 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // Handle unhandled promise rejections
+/**
+ * Global handler for unhandled promise rejections.
+ * Logs the error message to the console.
+ * @param {Error} err - The error that caused the rejection
+ * @param {Promise} promise - The promise that was rejected
+ */
 process.on('unhandledRejection', (err, promise) => {
   console.log(`Error: ${err.message}`);
 });

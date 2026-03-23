@@ -5,6 +5,9 @@ const Joi = require('joi');
  * @desc    Register a new user after Firebase Auth
  * @route   POST /api/auth/register
  * @access  Public
+ * @param {import('express').Request} req - Express request object. Body: { idToken, username, img }
+ * @param {import('express').Response} res - Express response object
+ * @returns {Promise<void>} JSON response with success flag, user data, and JWT token
  */
 const register = async (req, res) => {
   const schema = Joi.object({
@@ -41,6 +44,9 @@ const register = async (req, res) => {
  * @desc    Login user after Firebase Auth
  * @route   POST /api/auth/login
  * @access  Public
+ * @param {import('express').Request} req - Express request object. Body: { idToken }
+ * @param {import('express').Response} res - Express response object
+ * @returns {Promise<void>} JSON response with success flag, user data, and JWT token
  */
 const login = async (req, res) => {
   const schema = Joi.object({
