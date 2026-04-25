@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const connectDB = require('./config/db');
 const { errorHandler, notFound } = require('./middleware/errorMiddleware');
 const authRoutes = require('./modules/auth/auth.routes');
+const waitlistRoutes = require('./modules/waitlist/waitlist.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -39,6 +40,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/waitlist', waitlistRoutes);
 
 // Error Handling
 app.use(notFound);
